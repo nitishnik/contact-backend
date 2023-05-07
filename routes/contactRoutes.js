@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const validateToken = require("../middleware/validateTokenHandler");
 
 // const contactController = require("../controllers/contactController");
 // router.route("/").get(contactController.getContacts);
@@ -16,6 +17,8 @@ const {
   updateContact,
   deleteContact,
 } = require("../controllers/contactController");
+// Note: if you want to validate all the routes then you should use below way of doing this.
+router.use(validateToken); // other way to validate ( from user controller)
 
 router.route("/").get(getContacts).post(createContact);
 router.route("/:id").get(getContact).put(updateContact).delete(deleteContact);
