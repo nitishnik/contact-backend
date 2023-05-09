@@ -8,7 +8,7 @@ const User = require("../models/userModel");
 //@access public
 
 const getUsers = asyncHandler(async (req, res) => {
-  const users = await User.find();
+  const users = await User.find({}, { password: false });
   res.status(200).json(users);
 });
 
